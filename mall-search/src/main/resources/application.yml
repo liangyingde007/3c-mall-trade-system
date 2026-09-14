@@ -1,0 +1,33 @@
+# 数据库的连接新
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+    sentinel:
+      transport:
+        dashboard: ${SENTINEL_DASHBOARD:localhost:8080}
+        client-ip: localhost
+        port: 8719
+  application:
+    name: mall-search
+  # 统一的全局的--设置服务器响应给客户端的日期时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: false
+  session:
+    store-type: redis
+    redis:
+      namespace: spring:session
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+server:
+  port: 8090
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

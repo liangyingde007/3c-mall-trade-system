@@ -1,0 +1,45 @@
+# 数据库的连接新
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: ${SENTINEL_DASHBOARD:localhost:8080}
+        client-ip: localhost
+  application:
+    name: mall-seckill
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+  task:
+    execution:
+      pool:
+        core-size: 5
+        max-size: 20
+  session:
+    store-type: redis
+    redis:
+      namespace: spring:redis
+  thymeleaf:
+    cache: false
+
+server:
+  port: 9601
+
+# RocketMQ的相关信息
+rocketmq:
+  name-server: ${ROCKETMQ_NAME_SERVER:127.0.0.1:9876}
+  producer:
+    group: seckill-order-producer
+  consumer:
+    group: seckill-order-consumer
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+

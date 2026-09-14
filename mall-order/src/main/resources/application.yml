@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_ORDER_DB:mall-oms}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+    sentinel:
+      transport:
+        port: 8719
+        client-ip: localhost
+        dashboard: ${SENTINEL_DASHBOARD:localhost:8080}
+  application:
+    name: mall-order
+  session:
+    store-type: redis
+    redis:
+      namespace: spring:session
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+
+server:
+  port: 8030
+  servlet:
+    session:
+      timeout: 30m
+
+user:
+  userName: zhangsan
+  age: 18
+
+rocketmq:
+  name-server: ${ROCKETMQ_NAME_SERVER:127.0.0.1:9876}
+  producer:
+    group: order-producer
+  consumer:
+    group: order-consumer
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

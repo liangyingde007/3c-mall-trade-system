@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.msb.mall</groupId>
+    <artifactId>mall-mall</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>3c-mall-trade-system</name>
+    <description>3C 数码商城交易系统 - 校招作品集二次开发版</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>mall-ware</module>
+        <module>mall-member</module>
+        <module>mall-coupon</module>
+        <module>mall-order</module>
+        <module>mall-product</module>
+        <module>renren-fast-master</module>
+        <module>renren-generator-master</module>
+        <module>mall-commons</module>
+        <module>mall-gateway</module>
+        <module>mall-third-party</module>
+        <module>mall-search</module>
+        <module>mall-auth_server</module>
+        <module>mall-cart</module>
+        <module>mall-seckill</module>
+
+    </modules>
+</project>

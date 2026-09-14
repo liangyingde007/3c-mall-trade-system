@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_COUPON_DB:mall-sms}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+    sentinel:
+      transport:
+        client-ip: localhost
+        dashboard: ${SENTINEL_DASHBOARD:localhost:8080}
+        port: 8719
+  application:
+    name: mall-coupon
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+server:
+  port: 8010
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

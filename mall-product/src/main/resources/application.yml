@@ -1,0 +1,70 @@
+spring:
+  datasource:
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_PRODUCT_DB:mall-pms}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+    alicloud:
+      access-key: ${ALIYUN_ACCESS_KEY:}
+      secret-key: ${ALIYUN_SECRET_KEY:}
+      oss:
+        endpoint: ${ALIYUN_OSS_ENDPOINT:oss-cn-guangzhou.aliyuncs.com}
+    sentinel:
+      transport:
+        client-ip: localhost
+        dashboard: ${SENTINEL_DASHBOARD:localhost:8080}
+        port: 8719
+
+  application:
+    name: mall-product
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+  thymeleaf:
+    cache: false
+
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
+      use-key-prefix: true
+      cache-null-values: true
+
+  session:
+    store-type: redis
+    redis:
+      namespace: spring:session
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+server:
+  port: 8040
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+feign:
+  sentinel:
+    enabled: true

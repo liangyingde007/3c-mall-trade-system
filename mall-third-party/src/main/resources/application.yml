@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+    alicloud:
+      access-key: ${ALIYUN_ACCESS_KEY:}
+      secret-key: ${ALIYUN_SECRET_KEY:}
+      oss:
+        endpoint: ${ALIYUN_OSS_ENDPOINT:oss-cn-guangzhou.aliyuncs.com}
+        bucket: ${ALIYUN_OSS_BUCKET:}
+      sms:
+        host: ${ALIYUN_SMS_HOST:https://dfsns.market.alicloudapi.com}
+        path: ${ALIYUN_SMS_PATH:/data/send_sms}
+        method: POST
+        appCode: ${ALIYUN_SMS_APP_CODE:}
+    application:
+      name: mall-third
+    sentinel:
+      transport:
+        client-ip: localhost
+        dashboard: ${SENTINEL_DASHBOARD:localhost:8080}
+        port: 8719
+
+server:
+  port: 8100
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

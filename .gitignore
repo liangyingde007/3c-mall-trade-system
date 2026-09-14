@@ -1,0 +1,57 @@
+# ===== Maven / Java =====
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# ===== IntelliJ IDEA =====
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ===== VS Code / Eclipse =====
+.vscode/
+.project
+.classpath
+.settings/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== Logs / runtime =====
+logs/
+*.log
+*.pid
+
+# ===== Local secrets / environment =====
+.env
+.env.*
+!.env.example
+**/application-local.yml
+**/application-local.yaml
+**/application-secret.yml
+**/application-secret.yaml
+**/bootstrap-local.yml
+**/bootstrap-local.yaml
+*.pem
+*.key
+*.p12
+*.jks
+
+# ===== Temporary =====
+*.tmp
+*.swp
+*.swo
+
+# ===== Maven wrapper generated files =====
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
