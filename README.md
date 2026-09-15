@@ -1,20 +1,37 @@
 # 3C 数码商城交易系统
 
-基于 **Spring Cloud 微服务架构** 实现的 3C 数码商城交易系统。
+## 项目背景
 
-本项目围绕真实电商交易链路进行设计，在原商城工程基础上进行了业务梳理和工程优化，重点解决商城系统中的高频工程问题：
+随着智能手机、电脑、智能穿戴等 3C
+数码产品线上消费规模不断扩大，电商平台需要支撑从商品展示、购物车、订单交易、支付结算到库存管理的完整业务链路。
 
--   订单重复提交
--   支付回调重复通知
--   高并发库存超卖
--   秒杀瞬时流量冲击
--   商品搜索性能优化
+相比普通商品交易，3C 数码产品具有商品规格复杂、SKU
+数量多、库存价值高、促销活动频繁等特点。例如同一款手机可能包含不同内存、颜色、版本等多个
+SKU，平台不仅需要保证商品信息准确，还需要保证库存实时可靠以及交易流程稳定。
 
-## 项目亮点
+在大型促销活动、新品发布等场景下，商城系统需要面对瞬时高并发访问、大量订单创建、库存竞争以及支付状态同步等问题。因此，一个稳定、高效、可扩展的商城交易系统，需要通过合理的服务拆分以及针对核心交易链路的优化，保证业务连续性和数据一致性。
 
-### 1. 分布式交易链路优化
+## 项目介绍
 
-围绕商城核心交易流程，对订单、库存、支付等关键环节进行优化：
+本项目围绕 3C 数码电商交易场景，基于 Spring Cloud
+微服务架构实现用户、商品、购物车、订单、库存、营销、秒杀以及搜索等核心业务模块。
+
+项目在原商城工程基础上进行了业务梳理和工程优化，重点针对商城系统中的关键工程问题进行优化：
+
+-   订单提交过程中的重复请求问题
+-   支付回调过程中的状态一致性问题
+-   高并发购买场景下库存超卖问题
+-   秒杀活动中的瞬时流量冲击问题
+-   海量商品查询场景下的搜索性能问题
+
+通过 Redis、RocketMQ、Elasticsearch、MySQL
+条件更新等技术，对核心交易链路进行优化。
+
+# 项目亮点
+
+## 1. 分布式交易链路优化
+
+围绕商城核心交易流程，对订单、库存、支付等关键环节进行了优化：
 
 -   Redis Token + Lua 实现订单防重复提交
 -   CAS 条件更新保证支付回调幂等
@@ -22,9 +39,9 @@
 -   RocketMQ 异步削峰提升系统吞吐能力
 -   Elasticsearch 提升商品搜索效率
 
-### 2. 面向业务场景的工程优化
+## 2. 面向业务场景的工程优化
 
-项目重点关注：
+项目重点关注真实商城业务中的关键问题：
 
 -   用户重复点击提交订单如何避免重复创建
 -   支付平台重复回调如何保证数据一致
@@ -53,7 +70,7 @@
 
 # 核心交易链路
 
-## 下单与支付核心链路图
+## 下单与支付核心链路
 
 ``` mermaid
 flowchart LR
@@ -62,128 +79,50 @@ classDef box fill:#ffffff,stroke:#7aa7d9,stroke-width:1px,color:#333;
 classDef decision fill:#ffffff,stroke:#7aa7d9,stroke-width:1px,color:#333;
 
 A[购物车结算] --> B[订单确认页]
-
-B --> C[Redis生成<br/>orderToken]
-
+B --> C[Redis生成 orderToken]
 C --> D[提交订单]
-
-D --> E[Lua校验并删除<br/>Token]
-
+D --> E[Lua校验并删除 Token]
 E --> F[创建订单/订单项]
-
 F --> G[条件更新锁库存]
-
 G --> H[待付款]
-
 H --> I{支付结果}
-
-I -->|成功| J[CAS状态迁移<br/>待付款 → 待发货]
-
-I -->|重复回调| K[affectedRows为0<br/>幂等返回]
+I -->|成功| J[CAS状态迁移 待付款→待发货]
+I -->|重复回调| K[affectedRows=0 幂等返回]
 
 class A,B,C,D,E,F,G,H,J,K box;
 class I decision;
 ```
 
-## 链路说明
-
-1.  用户购物车结算进入订单确认页
-2.  订单服务生成 orderToken 并保存到 Redis
-3.  提交订单时通过 Lua 脚本校验并删除 Token，保证原子性
-4.  创建订单和订单项
-5.  库存服务通过条件更新锁定库存
-6.  订单进入待付款状态
-7.  支付成功后通过 CAS 更新订单状态，保证支付幂等
-
-# 下单时序图
-
-``` mermaid
-sequenceDiagram
-    participant U as 用户
-    participant G as Gateway网关
-    participant O as 订单服务
-    participant R as Redis
-    participant C as 购物车服务
-    participant M as 会员服务
-    participant W as 库存服务
-    participant DB as MySQL
-    participant MQ as RocketMQ
-
-    U->>G: 提交订单请求
-    G->>O: 路由订单请求
-
-    O->>R: 校验 orderToken
-    R-->>O: Token有效
-
-    O->>C: 获取选中商品
-    C-->>O: 返回商品信息
-
-    O->>M: 获取收货地址
-    M-->>O: 返回地址信息
-
-    O->>DB: 保存订单与订单项
-
-    O->>W: 请求锁定库存
-    W->>DB: 条件更新库存
-
-    O->>MQ: 发送订单消息
-
-    O-->>U: 返回订单结果
-```
-
 # 核心技术优化
 
-## 1. Redis + Lua 实现订单防重复提交
+## Redis + Lua 实现订单防重复提交
 
-### 问题
+业务问题：
 
-用户重复点击提交订单，可能导致重复创建订单。
+用户在网络延迟或重复点击情况下，可能多次提交订单请求，造成重复创建订单。
 
-### 解决方案
+解决方案：
 
-订单确认页生成 orderToken：
+订单确认页生成 orderToken，提交订单时使用 Lua 脚本完成：
 
-``` text
-Redis
-
-key: order:token:userId
-
-value: token
-```
-
-提交订单时：
-
-``` text
-Lua脚本：
-
-1. 校验Token
-
-2. 删除Token
-```
+1.  校验 Token
+2.  删除 Token
 
 保证校验和删除操作原子执行。
 
 核心代码位置：
 
 ``` text
-mall-order
-
-OrderServiceImpl.java
+mall-order/.../OrderServiceImpl.java
 
 submitOrder()
 ```
 
-------------------------------------------------------------------------
+## 支付回调幂等设计
 
-## 2. 支付回调幂等设计
+支付平台可能由于网络原因重复发送支付成功通知。
 
-### 问题
-
-第三方支付平台可能重复发送支付成功通知。
-
-### 解决方案
-
-采用 CAS 条件更新：
+通过数据库 CAS 条件更新限制订单状态流转：
 
 ``` sql
 update oms_order
@@ -196,39 +135,28 @@ and status = '待付款';
 
 ``` text
 affectedRows = 1
-
-更新成功
 ```
 
 重复回调：
 
 ``` text
 affectedRows = 0
-
 无需处理
 ```
 
 核心代码位置：
 
 ``` text
-mall-order
-
-OrderServiceImpl.java
+mall-order/.../OrderServiceImpl.java
 
 handlePayResult()
 ```
 
-------------------------------------------------------------------------
+## 库存条件更新防止超卖
 
-## 3. 库存条件更新防止超卖
+多个用户同时购买同一个 SKU 时，直接扣减库存可能导致库存异常。
 
-### 问题
-
-多个用户同时购买同一商品，可能造成库存超卖。
-
-### 解决方案
-
-使用数据库条件更新：
+采用数据库条件更新：
 
 ``` sql
 update wms_ware_sku
@@ -237,74 +165,28 @@ where sku_id = #{skuId}
 and stock - stock_locked >= #{num};
 ```
 
-只有满足库存条件时才允许锁定库存。
-
 核心代码位置：
 
 ``` text
-mall-ware
-
-WareSkuDao.xml
+mall-ware/.../WareSkuDao.xml
 
 lockSkuStock()
 ```
 
-------------------------------------------------------------------------
+# 商品搜索优化
 
-## 4. 秒杀高并发优化
+商品数量增加后，复杂条件查询会影响数据库查询性能。
 
-秒杀流程：
+将商品数据同步至 Elasticsearch：
 
-``` mermaid
-flowchart LR
-
-classDef box fill:#ffffff,stroke:#7aa7d9,stroke-width:1px,color:#333;
-
-A[用户请求]
---> B[Redis库存预热]
-
-B --> C[Lua原子扣减]
-
-C --> D[一人一单校验]
-
-D --> E[RocketMQ异步削峰]
-
-E --> F[订单服务创建订单]
-
-class A,B,C,D,E,F box;
-```
-
-优化：
-
--   Redis缓存热点数据
--   Lua保证扣减原子性
--   MQ异步削峰
-
-------------------------------------------------------------------------
-
-## 5. Elasticsearch 商品搜索
-
-商品搜索流程：
-
-``` mermaid
-flowchart LR
-
-classDef box fill:#ffffff,stroke:#7aa7d9,stroke-width:1px,color:#333;
-
-A[商品数据]
---> B[同步ES索引]
-
-B --> C[关键词搜索]
-
-C --> D[返回搜索结果]
-
-class A,B,C,D box;
-```
-
-核心代码：
+核心代码位置：
 
 ``` text
-mall-search
+mall-product/.../SpuInfoServiceImpl.java
+
+mall-search/.../ElasticSearchSaveServiceImpl.java
+
+mall-search/.../MallSearchServiceImpl.java
 ```
 
 # 技术栈
@@ -324,43 +206,10 @@ mall-search
   Seata           分布式事务
   Sentinel        服务保护
 
-# 项目结构
-
-``` text
-mall-auth_server
-mall-member
-mall-product
-mall-cart
-mall-order
-mall-ware
-mall-coupon
-mall-seckill
-mall-search
-mall-third-party
-mall-gateway
-mall-commons
-```
-
-# 运行环境
-
--   JDK 8+
--   Maven
--   MySQL 8
--   Redis
--   Nacos
--   RocketMQ
--   Elasticsearch
-
 # 项目总结
 
-通过该项目实践了：
+本项目围绕 3C
+数码电商交易场景，实践了微服务架构设计、高并发订单处理、Redis
+原子操作、MQ 异步解耦、接口幂等设计、库存一致性控制以及搜索服务优化。
 
--   微服务架构设计
--   高并发订单处理
--   Redis 原子操作
--   MQ 异步削峰
--   接口幂等设计
--   数据一致性控制
--   库存并发优化
-
-并针对商城真实业务场景进行了工程化优化。
+通过对核心业务链路的优化，使系统从完成基础业务功能进一步提升到解决真实工程问题。
