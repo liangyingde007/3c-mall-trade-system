@@ -191,20 +191,20 @@ mall-search/.../MallSearchServiceImpl.java
 
 # 技术栈
 
-  技术            应用
-  --------------- --------------------
-  Spring Boot     服务开发
-  Spring Cloud    微服务治理
-  Gateway         网关路由
-  Nacos           注册中心与配置中心
-  OpenFeign       服务调用
-  MyBatis-Plus    数据访问
-  MySQL           业务数据存储
-  Redis           缓存与分布式控制
-  RocketMQ        异步消息
-  Elasticsearch   商品搜索
-  Seata           分布式事务
-  Sentinel        服务保护
+| 技术 | 应用 |
+| --- | --- |
+| Spring Boot | 服务开发 |
+| Spring Cloud | 微服务治理 |
+| Spring Cloud Gateway | 网关路由 |
+| Nacos | 注册中心与配置中心 |
+| OpenFeign | 服务调用 |
+| MyBatis-Plus | 数据访问 |
+| MySQL | 业务数据存储 |
+| Redis | 缓存与分布式控制 |
+| RocketMQ | 异步消息 |
+| Elasticsearch | 商品搜索 |
+| Seata | 分布式事务 |
+| Sentinel | 服务保护 |
 
 # 项目总结
 
