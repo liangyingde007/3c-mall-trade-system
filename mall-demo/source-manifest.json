@@ -1,0 +1,210 @@
+{
+  "purpose": "Original-code allowlist for the public single-JVM demo; no production configuration",
+  "textLineEndings": "LF before hashing; destination trailing whitespace removed",
+  "files": [
+    {
+      "source": "mall-commons/src/main/java/com/msb/common/constant/AuthConstant.java",
+      "destination": "src/main/java/com/msb/common/constant/AuthConstant.java",
+      "sourceSha256": "4ca80106801aa3bbd321ff9b5112d41b4724fda61989481b642d14de39ef2fdb",
+      "sha256": "4ca80106801aa3bbd321ff9b5112d41b4724fda61989481b642d14de39ef2fdb"
+    },
+    {
+      "source": "mall-commons/src/main/java/com/msb/common/constant/CartConstant.java",
+      "destination": "src/main/java/com/msb/common/constant/CartConstant.java",
+      "sourceSha256": "be378a9410b2c1e485626d61982be08af53383ca1295884c365742dc74a1d6f9",
+      "sha256": "be378a9410b2c1e485626d61982be08af53383ca1295884c365742dc74a1d6f9"
+    },
+    {
+      "source": "mall-commons/src/main/java/com/msb/common/constant/OrderConstant.java",
+      "destination": "src/main/java/com/msb/common/constant/OrderConstant.java",
+      "sourceSha256": "6bda0dedc7db516eb52f0e414189489c08afbd8709af94389d92432ab131a2a1",
+      "sha256": "6bda0dedc7db516eb52f0e414189489c08afbd8709af94389d92432ab131a2a1"
+    },
+    {
+      "source": "mall-commons/src/main/java/com/msb/common/vo/MemberVO.java",
+      "destination": "src/main/java/com/msb/common/vo/MemberVO.java",
+      "sourceSha256": "94f2ceeafdf65aaa4a8dc55175a5748d54278313ac4faae30ccb1f68852fe2e0",
+      "sha256": "94f2ceeafdf65aaa4a8dc55175a5748d54278313ac4faae30ccb1f68852fe2e0"
+    },
+    {
+      "source": "mall-commons/src/main/java/com/msb/common/utils/R.java",
+      "destination": "src/main/java/com/msb/common/utils/R.java",
+      "sourceSha256": "7574be0ebfd7b6b70637b7628ab51707b60cdcbe2554ca7d1c1b3823f975e3ef",
+      "sha256": "34bb57010322e24926bd58d3dc75ccd349466dee2fd846bf08817b7d5290888c"
+    },
+    {
+      "source": "mall-cart/src/main/java/com/msb/mall/Interceptor/AuthInterceptor.java",
+      "destination": "src/main/java/com/msb/mall/Interceptor/AuthInterceptor.java",
+      "sourceSha256": "a296755fb9bc8fa20fee2f3257081d4d9cb86ce78e05e75de80282beb7879504",
+      "sha256": "a296755fb9bc8fa20fee2f3257081d4d9cb86ce78e05e75de80282beb7879504"
+    },
+    {
+      "source": "mall-cart/src/main/java/com/msb/mall/vo/Cart.java",
+      "destination": "src/main/java/com/msb/mall/vo/Cart.java",
+      "sourceSha256": "d536ba40ec2083bcca1bd4d18a938cca9636aaea828c058efbd3a72ad7ff6b77",
+      "sha256": "d536ba40ec2083bcca1bd4d18a938cca9636aaea828c058efbd3a72ad7ff6b77"
+    },
+    {
+      "source": "mall-cart/src/main/java/com/msb/mall/vo/CartItem.java",
+      "destination": "src/main/java/com/msb/mall/vo/CartItem.java",
+      "sourceSha256": "22446128920ca3bb03a7d2e5f96e2ef4331d723030b025e9a092c7be550bbbec",
+      "sha256": "22446128920ca3bb03a7d2e5f96e2ef4331d723030b025e9a092c7be550bbbec"
+    },
+    {
+      "source": "mall-cart/src/main/java/com/msb/mall/vo/SkuInfoVo.java",
+      "destination": "src/main/java/com/msb/mall/vo/SkuInfoVo.java",
+      "sourceSha256": "f3292127343b2b23e880bd1cd3b81b95d492188d9e38d7de772e37a2158647b0",
+      "sha256": "f3292127343b2b23e880bd1cd3b81b95d492188d9e38d7de772e37a2158647b0"
+    },
+    {
+      "source": "mall-cart/src/main/java/com/msb/mall/feign/ProductFeignService.java",
+      "destination": "src/main/java/com/msb/mall/feign/ProductFeignService.java",
+      "sourceSha256": "7e537d4b44fc711f347621a548a8af11f936d3de2456cf70cc33644a90f12173",
+      "sha256": "7e537d4b44fc711f347621a548a8af11f936d3de2456cf70cc33644a90f12173"
+    },
+    {
+      "source": "mall-cart/src/main/java/com/msb/mall/service/ICartService.java",
+      "destination": "src/main/java/com/msb/mall/service/ICartService.java",
+      "sourceSha256": "58e40a98e4c39ce034117f00ec6169649f63593286c08aa63740bc1d657cd8b1",
+      "sha256": "58e40a98e4c39ce034117f00ec6169649f63593286c08aa63740bc1d657cd8b1"
+    },
+    {
+      "source": "mall-cart/src/main/java/com/msb/mall/service/impl/CartServiceImpl.java",
+      "destination": "src/main/java/com/msb/mall/service/impl/CartServiceImpl.java",
+      "sourceSha256": "44de001d09c8a3c2565ae5b7f918cd03e6077b324fd6536591f1b7b8240c9651",
+      "sha256": "44de001d09c8a3c2565ae5b7f918cd03e6077b324fd6536591f1b7b8240c9651"
+    },
+    {
+      "source": "mall-cart/src/main/java/com/msb/mall/controller/DemoCartController.java",
+      "destination": "src/main/java/com/msb/mall/controller/DemoCartController.java",
+      "sourceSha256": "2b8e1cf4b46e9467f1ba69563e4224db9eff3f3ec138c165bbb027022a810f2b",
+      "sha256": "2b8e1cf4b46e9467f1ba69563e4224db9eff3f3ec138c165bbb027022a810f2b"
+    },
+    {
+      "source": "mall-cart/src/main/java/com/msb/mall/controller/DemoWebController.java",
+      "destination": "src/main/java/com/msb/mall/controller/DemoWebController.java",
+      "sourceSha256": "de4171d25628560add5355d34b7516602a3380e539e3158cf2584edfbfafa127",
+      "sha256": "de4171d25628560add5355d34b7516602a3380e539e3158cf2584edfbfafa127"
+    },
+    {
+      "source": "mall-product/src/main/java/com/msb/mall/product/entity/SkuInfoEntity.java",
+      "destination": "src/main/java/com/msb/mall/product/entity/SkuInfoEntity.java",
+      "sourceSha256": "7e4f577d8556df5baa0dd88e64d0d083836ccf005b19cb96a64843749e507b56",
+      "sha256": "beb74b656c15432212a1a57d328407d35eb94dd56b3cf291c7661a42b15cc52f"
+    },
+    {
+      "source": "mall-product/src/main/java/com/msb/mall/product/dao/SkuInfoDao.java",
+      "destination": "src/main/java/com/msb/mall/product/dao/SkuInfoDao.java",
+      "sourceSha256": "afa60fbcb52209dfb4482a6fc1341ffcd7e476dcab65efc3f2e4452da25dcbb5",
+      "sha256": "7e95fe818fcddc1f241fa5cf5f964ae31fd475f550dbf4b19899a3294e323702"
+    },
+    {
+      "source": "mall-order/src/main/java/com/msb/mall/order/entity/OrderEntity.java",
+      "destination": "src/main/java/com/msb/mall/order/entity/OrderEntity.java",
+      "sourceSha256": "0ad50e5aba63a5465044e2bfccd3df217498324b076870eab76712a22a54253e",
+      "sha256": "cedf5e09d5b29b526274e83b35873a07a5d6378bb3629e753f0e737d0d9c85bc"
+    },
+    {
+      "source": "mall-order/src/main/java/com/msb/mall/order/entity/OrderItemEntity.java",
+      "destination": "src/main/java/com/msb/mall/order/entity/OrderItemEntity.java",
+      "sourceSha256": "1e3f08f2c28cca95f5c538cf3b193974fc0178f07ec4f40b0b1138ba8d950335",
+      "sha256": "aa58870f7bb9d9fa4832703ab1f83bc82b865d74471f625d064183c6c50e526e"
+    },
+    {
+      "source": "mall-order/src/main/java/com/msb/mall/order/dao/OrderDao.java",
+      "destination": "src/main/java/com/msb/mall/order/dao/OrderDao.java",
+      "sourceSha256": "4f17cec23c0c852a6074d033c962ada7ee01eb9c55cc0091c24b047d5d1211c8",
+      "sha256": "4af4315b47952ec0b5630f800ec91d4023724385e6ec6657115926061cb43666"
+    },
+    {
+      "source": "mall-order/src/main/java/com/msb/mall/order/dao/OrderItemDao.java",
+      "destination": "src/main/java/com/msb/mall/order/dao/OrderItemDao.java",
+      "sourceSha256": "6b85372f2fc72669554ebab228f72765003d2f4113d3f5c1d6cb7d7195419cdc",
+      "sha256": "d21b2b191cd6089b139b354ac8d25e57649cdec7b763e83864ff1598f3a9f194"
+    },
+    {
+      "source": "mall-order/src/main/java/com/msb/mall/order/vo/OrderItemVo.java",
+      "destination": "src/main/java/com/msb/mall/order/vo/OrderItemVo.java",
+      "sourceSha256": "79dfa079e2e52cca25a9aecb00b2f79b5b943f52e39ddb3c1268252dc122777a",
+      "sha256": "79dfa079e2e52cca25a9aecb00b2f79b5b943f52e39ddb3c1268252dc122777a"
+    },
+    {
+      "source": "mall-order/src/main/java/com/msb/mall/order/demo/DemoOrderService.java",
+      "destination": "src/main/java/com/msb/mall/order/demo/DemoOrderService.java",
+      "sourceSha256": "bd6f91d3179a390ccf1d89d10093598bc2878c58fb5bbada833bb63bd0351737",
+      "sha256": "bd6f91d3179a390ccf1d89d10093598bc2878c58fb5bbada833bb63bd0351737"
+    },
+    {
+      "source": "mall-order/src/main/java/com/msb/mall/order/demo/DemoOrderExpiry.java",
+      "destination": "src/main/java/com/msb/mall/order/demo/DemoOrderExpiry.java",
+      "sourceSha256": "9cc844f2c71c21a494db724f12b5baf97b3d3db394d90963d16a82a5ae0c5141",
+      "sha256": "9cc844f2c71c21a494db724f12b5baf97b3d3db394d90963d16a82a5ae0c5141"
+    },
+    {
+      "source": "mall-order/src/main/java/com/msb/mall/order/demo/dao/DemoInventoryDao.java",
+      "destination": "src/main/java/com/msb/mall/order/demo/dao/DemoInventoryDao.java",
+      "sourceSha256": "fcbcf278db92008af1ab5a5db2cad60b1f8df9ae1c981613450475aee49c335d",
+      "sha256": "fcbcf278db92008af1ab5a5db2cad60b1f8df9ae1c981613450475aee49c335d"
+    },
+    {
+      "source": "mall-product/src/main/resources/mapper/product/SkuInfoDao.xml",
+      "destination": "src/main/resources/mapper/product/SkuInfoDao.xml",
+      "sourceSha256": "7b761e5485ff97481a3749588dc7ef8eaa4976eb341b7d4a23dff1cbe290903e",
+      "sha256": "edde92f43831d73f11cebffd28c4509336ebc6ebdbd3f91b0cb8dec5ef63923f"
+    },
+    {
+      "source": "mall-order/src/main/resources/mapper/order/OrderDao.xml",
+      "destination": "src/main/resources/mapper/order/OrderDao.xml",
+      "sourceSha256": "18ff050d78eb5182b2294b9ad45c8cbb8fe234f1e55f04205f9f2b4de5f0d11b",
+      "sha256": "6252303aafd0815cf48002435397a15fc8ba55c5d879b2b09b3bd8c245a02ba1"
+    },
+    {
+      "source": "mall-order/src/main/resources/mapper/order/OrderItemDao.xml",
+      "destination": "src/main/resources/mapper/order/OrderItemDao.xml",
+      "sourceSha256": "e16e16619ae50bf3d3ad2d3e2258520f36a80e9ea2bf406d07f407a1d5488de1",
+      "sha256": "e7ef18c8bc0b663f7544fb78da698d5e07846a7a771f92832e267d22c01d4dc1"
+    },
+    {
+      "source": "mall-cart/src/main/resources/static/demo/index.html",
+      "destination": "src/main/resources/static/demo/index.html",
+      "sourceSha256": "c8dc514d4add95a3768b6eb8979ba6ab04c36144403f3563ccca514639f13dc2",
+      "sha256": "75c0cf5cb0b9f998ea7cc7d62cc84a7d2c79f57a33d81a1e40908d4479b70a26"
+    },
+    {
+      "source": "mall-cart/src/main/resources/static/demo/styles.css",
+      "destination": "src/main/resources/static/demo/styles.css",
+      "sourceSha256": "53a96a24085f86820f4b60e0e978d04aa978089d328e9408e47d86ffaf07893b",
+      "sha256": "53a96a24085f86820f4b60e0e978d04aa978089d328e9408e47d86ffaf07893b"
+    },
+    {
+      "source": "mall-cart/src/main/resources/static/demo/app.js",
+      "destination": "src/main/resources/static/demo/app.js",
+      "sourceSha256": "83477886de28c25208df4ed4815c589844377944e91e06800df024915d7ce83a",
+      "sha256": "83477886de28c25208df4ed4815c589844377944e91e06800df024915d7ce83a"
+    },
+    {
+      "source": "mall-cart/src/main/resources/static/demo/favicon.svg",
+      "destination": "src/main/resources/static/demo/favicon.svg",
+      "sourceSha256": "3b585682eaf5f43570a3b09be7fdbcb7ed4127bb845a4c5173e1423f8881714b",
+      "sha256": "3b585682eaf5f43570a3b09be7fdbcb7ed4127bb845a4c5173e1423f8881714b"
+    },
+    {
+      "source": "mall-cart/src/main/resources/static/demo-assets/product-01.svg",
+      "destination": "src/main/resources/static/demo-assets/product-01.svg",
+      "sourceSha256": "a77bd721487cf527e4be983307e70d7425067b3c4489c07ccfd16833c73021ca",
+      "sha256": "c13233c142011f3cd05cd80c23f7c120bb41446f03ba340e2dd1dd5ede8df77a"
+    },
+    {
+      "source": "mall-cart/src/main/resources/static/demo-assets/product-02.svg",
+      "destination": "src/main/resources/static/demo-assets/product-02.svg",
+      "sourceSha256": "c0322c0d24671986283358d1def69981a52be65e2c9da95654349b349ab816a5",
+      "sha256": "9d5749e8d0a30ba4b07448388850fba56ffd9188dadc2a4328382bb1aa0c9434"
+    },
+    {
+      "source": "mall-cart/src/main/resources/static/demo-assets/product-03.svg",
+      "destination": "src/main/resources/static/demo-assets/product-03.svg",
+      "sourceSha256": "24420ad018e234a36fd8ddac249575b6850c77afd2c0f7cb4c676ba5590bbabd",
+      "sha256": "a569b6a1a7fdd2cd3ea33d580d699ed0e1ca5ce49e730009d3f11b231d82d14c"
+    }
+  ]
+}

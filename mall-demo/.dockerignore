@@ -1,0 +1,11 @@
+# Default deny. The Docker build sees only the audited public module.
+**
+!pom.xml
+!Dockerfile
+!source-manifest.json
+!src/
+!src/**
+!runtime/
+!runtime/**
+runtime/__pycache__/**
+runtime/*.pyc

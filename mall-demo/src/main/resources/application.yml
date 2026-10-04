@@ -1,0 +1,50 @@
+server:
+  port: ${PORT:4185}
+  forward-headers-strategy: framework
+  tomcat:
+    threads:
+      max: 12
+      min-spare: 2
+    max-connections: 100
+spring:
+  application:
+    name: lyd-mall-demo
+  jackson:
+    deserialization:
+      accept-float-as-int: false
+  datasource:
+    url: jdbc:mysql://127.0.0.1:${DEMO_MYSQL_PORT:13306}/${DEMO_DB_NAME:lyd_mall_demo}?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ${DEMO_DB_USER:root}
+    password: ${DEMO_DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: 4
+      minimum-idle: 1
+  redis:
+    host: 127.0.0.1
+    port: ${DEMO_REDIS_PORT:13380}
+    lettuce:
+      pool:
+        max-active: 4
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+mall:
+  demo:
+    enabled: true
+    order-ttl-seconds: 900
+    expiry-scan-ms: 10000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+  health:
+    redis:
+      enabled: true

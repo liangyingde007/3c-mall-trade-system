@@ -14,6 +14,7 @@ import org.apache.skywalking.apm.toolkit.trace.Tag;
 import org.apache.skywalking.apm.toolkit.trace.Tags;
 import org.apache.skywalking.apm.toolkit.trace.Trace;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -58,6 +59,9 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
 
     @Autowired
     SeckillFeignService seckillFeignService;
+
+    @Value("${mall.seckill.enabled:true}")
+    boolean seckillEnabled;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -181,14 +185,14 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
             vo.setImages(images);
         }, threadPoolExecutor);
 
-        CompletableFuture<Void> seckillFuture = CompletableFuture.runAsync(() -> {
+        CompletableFuture<Void> seckillFuture = seckillEnabled ? CompletableFuture.runAsync(() -> {
             // 查询商品的秒杀活动
             R r = seckillFeignService.getSeckillSessionBySkuId(skuId);
             if(r.getCode() == 0){
                 SeckillVO seckillVO = JSON.parseObject(r.get("data").toString(),SeckillVO.class);
                 vo.setSeckillVO(seckillVO);
             }
-        }, threadPoolExecutor);
+        }, threadPoolExecutor) : CompletableFuture.completedFuture(null);
 
 
         CompletableFuture.allOf(saleFuture,spuFuture,imageFuture,groupFuture,seckillFuture).get();

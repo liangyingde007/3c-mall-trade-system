@@ -1,0 +1,26 @@
+-- 21 fictional catalog/stock records; no real members, addresses or orders.
+USE `lyd_mall_demo`;
+SET NAMES utf8mb4;
+START TRANSACTION;
+INSERT INTO `pms_sku_info` (`sku_id`, `spu_id`, `sku_name`, `sku_desc`, `catalog_id`, `brand_id`, `sku_default_img`, `sku_title`, `sku_subtitle`, `price`, `sale_count`) VALUES (921001, 911001, '示例手机 A', '仅供求职项目体验', 900111, 900001, '/demo-assets/product-01.svg', '示例手机 A', '示例数据，不提供购买或真实支付', 2999, 0);
+INSERT INTO `pms_attr` (`attr_id`, `attr_name`, `attr_type`, `enable`, `catelog_id`, `search_type`, `show_desc`, `value_select`) VALUES (941001, '示例规格', 2, 1, 900111, 0, 1, '8GB + 256GB');
+INSERT INTO `pms_attr_group` (`attr_group_id`, `attr_group_name`, `sort`, `descript`, `catelog_id`) VALUES (951001, '基本规格', 0, '演示参数组', 900111);
+INSERT INTO `pms_attr_attrgroup_relation` (`id`, `attr_id`, `attr_group_id`, `attr_sort`) VALUES (971001, 941001, 951001, 0);
+INSERT INTO `pms_product_attr_value` (`id`, `spu_id`, `attr_id`, `attr_name`, `attr_value`, `attr_sort`, `quick_show`) VALUES (981001, 911001, 941001, '示例规格', '8GB + 256GB', 0, 1);
+INSERT INTO `pms_sku_sale_attr_value` (`id`, `sku_id`, `attr_id`, `attr_name`, `attr_value`, `attr_sort`) VALUES (991001, 921001, 941001, '示例规格', '8GB + 256GB', 0);
+INSERT INTO `wms_ware_sku` (`id`, `sku_id`, `ware_id`, `stock`, `stock_locked`, `sku_name`) VALUES (901001, 921001, 930001, 20, 0, '示例手机 A');
+INSERT INTO `pms_sku_info` (`sku_id`, `spu_id`, `sku_name`, `sku_desc`, `catalog_id`, `brand_id`, `sku_default_img`, `sku_title`, `sku_subtitle`, `price`, `sale_count`) VALUES (921002, 911002, '示例笔记本 B', '仅供求职项目体验', 900121, 900001, '/demo-assets/product-02.svg', '示例笔记本 B', '示例数据，不提供购买或真实支付', 4999, 0);
+INSERT INTO `pms_attr` (`attr_id`, `attr_name`, `attr_type`, `enable`, `catelog_id`, `search_type`, `show_desc`, `value_select`) VALUES (941002, '示例规格', 2, 1, 900121, 0, 1, '16GB + 512GB');
+INSERT INTO `pms_attr_group` (`attr_group_id`, `attr_group_name`, `sort`, `descript`, `catelog_id`) VALUES (951002, '基本规格', 0, '演示参数组', 900121);
+INSERT INTO `pms_attr_attrgroup_relation` (`id`, `attr_id`, `attr_group_id`, `attr_sort`) VALUES (971002, 941002, 951002, 0);
+INSERT INTO `pms_product_attr_value` (`id`, `spu_id`, `attr_id`, `attr_name`, `attr_value`, `attr_sort`, `quick_show`) VALUES (981002, 911002, 941002, '示例规格', '16GB + 512GB', 0, 1);
+INSERT INTO `pms_sku_sale_attr_value` (`id`, `sku_id`, `attr_id`, `attr_name`, `attr_value`, `attr_sort`) VALUES (991002, 921002, 941002, '示例规格', '16GB + 512GB', 0);
+INSERT INTO `wms_ware_sku` (`id`, `sku_id`, `ware_id`, `stock`, `stock_locked`, `sku_name`) VALUES (901002, 921002, 930001, 20, 0, '示例笔记本 B');
+INSERT INTO `pms_sku_info` (`sku_id`, `spu_id`, `sku_name`, `sku_desc`, `catalog_id`, `brand_id`, `sku_default_img`, `sku_title`, `sku_subtitle`, `price`, `sale_count`) VALUES (921003, 911003, '示例耳机 C', '仅供求职项目体验', 900131, 900001, '/demo-assets/product-03.svg', '示例耳机 C', '示例数据，不提供购买或真实支付', 699, 0);
+INSERT INTO `pms_attr` (`attr_id`, `attr_name`, `attr_type`, `enable`, `catelog_id`, `search_type`, `show_desc`, `value_select`) VALUES (941003, '示例规格', 2, 1, 900131, 0, 1, '无线 / 示例规格');
+INSERT INTO `pms_attr_group` (`attr_group_id`, `attr_group_name`, `sort`, `descript`, `catelog_id`) VALUES (951003, '基本规格', 0, '演示参数组', 900131);
+INSERT INTO `pms_attr_attrgroup_relation` (`id`, `attr_id`, `attr_group_id`, `attr_sort`) VALUES (971003, 941003, 951003, 0);
+INSERT INTO `pms_product_attr_value` (`id`, `spu_id`, `attr_id`, `attr_name`, `attr_value`, `attr_sort`, `quick_show`) VALUES (981003, 911003, 941003, '示例规格', '无线 / 示例规格', 0, 1);
+INSERT INTO `pms_sku_sale_attr_value` (`id`, `sku_id`, `attr_id`, `attr_name`, `attr_value`, `attr_sort`) VALUES (991003, 921003, 941003, '示例规格', '无线 / 示例规格', 0);
+INSERT INTO `wms_ware_sku` (`id`, `sku_id`, `ware_id`, `stock`, `stock_locked`, `sku_name`) VALUES (901003, 921003, 930001, 20, 0, '示例耳机 C');
+COMMIT;
