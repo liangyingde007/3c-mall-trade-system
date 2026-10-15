@@ -5,6 +5,7 @@ const categories = {900111:'手机',900121:'笔记本',900131:'耳机'};
 let state = {products:[],cart:{items:[],totalAmount:0,checkCountNum:0},busy:false};
 let detailTrigger = null;
 let orderQuote = null;
+let catalogCategory = 'all';
 
 function status(message, error=false) {
   $('#page-status').textContent = message;
@@ -34,6 +35,7 @@ async function request(path, method='GET', payload) {
 function setBusy(busy) {
   state.busy = busy;
   document.querySelectorAll('#product-grid button,#cart-items button,#cart-items input').forEach(el => el.disabled=busy);
+  document.querySelectorAll('#product-grid [data-action="add"]').forEach(el => el.disabled=busy || Number(el.closest('[data-stock]').dataset.stock)<=0);
   $('#cart-items').setAttribute('aria-busy',String(busy));
   $('#checkout-button').disabled=busy || !state.cart.checkCountNum;
   document.querySelectorAll('#order-list button,#refresh-orders,#submit-order').forEach(el=>el.disabled=busy);
@@ -48,24 +50,34 @@ function element(tag, className, text) {
 }
 
 function imageUrl(path) {
-  return /^\/demo-assets\/product-0[123]\.svg$/.test(path) ? path : '/demo-assets/product-01.svg';
+  return /^\/demo-assets\/(?:(?:phone|laptop|headphones)\.png|product-0[123]\.svg)$/.test(path) ? path : '/demo-assets/product-01.svg';
 }
 
 function renderProducts() {
   const grid=$('#product-grid'); grid.replaceChildren();
-  for (const product of state.products) {
+  const query=$('#catalog-search').value.trim().toLowerCase();
+  let products=state.products.filter(product=>(catalogCategory==='all' || String(product.catalogId)===catalogCategory) && `${product.skuTitle} ${product.skuSubtitle}`.toLowerCase().includes(query));
+  const sort=$('#catalog-sort').value;
+  if(sort!=='default') products=[...products].sort((a,b)=>sort==='price-asc'?a.price-b.price:b.price-a.price);
+  for (const product of products) {
     const fragment=$('#product-template').content.cloneNode(true);
-    const card=fragment.querySelector('article'); card.dataset.sku=String(product.skuId);
+    const card=fragment.querySelector('article'); card.dataset.sku=String(product.skuId); card.dataset.stock=String(product.stock);
     card.querySelector('img').src=imageUrl(product.skuDefaultImg);
+    card.querySelector('img').alt=product.skuTitle+' · 品类展示图';
     card.querySelector('.product-category').textContent=categories[product.catalogId] || '数码商品';
     card.querySelector('h3').textContent=product.skuTitle;
     card.querySelector('.product-subtitle').textContent=product.skuSubtitle;
     card.querySelector('.product-price').textContent=money(product.price);
+    const stock=card.querySelector('.product-stock'); stock.textContent=product.stock<=0?'暂时缺货':product.stock<=3?`仅剩 ${product.stock} 件`:`可用库存 ${product.stock} 件`;
+    stock.classList.toggle('low-stock',product.stock<=3);
     card.querySelector('[data-action="detail"]').setAttribute('aria-label',`查看${product.skuTitle}的规格详情`);
     card.querySelector('[data-action="add"]').setAttribute('aria-label',`将${product.skuTitle}加入购物车`);
+    card.querySelector('[data-action="add"]').disabled=state.busy || product.stock<=0;
+    if(product.stock<=0) card.querySelector('[data-action="add"]').textContent='暂时缺货';
     grid.append(fragment);
   }
-  $('#product-count').textContent=`${state.products.length} 件示例商品`;
+  if(!products.length) grid.append(element('p','catalog-empty','没有匹配的商品，试试其他分类或关键词。'));
+  $('#product-count').textContent=`显示 ${products.length} / ${state.products.length} 件`;
   grid.setAttribute('aria-busy','false');
 }
 
@@ -120,7 +132,7 @@ async function showDetail(sku, trigger) {
     const layout=element('div','detail-layout');
     const image=element('img','detail-image'); image.src=imageUrl(item.info.skuDefaultImg); image.alt=''; image.width=160; image.height=160;
     const copy=element('div'); const title=element('h2',null,item.info.skuTitle); title.id='detail-title';
-    copy.append(title,element('p','detail-price',money(item.info.price)),element('p','detail-note','虚构示例商品，规格用于演示。'));
+    copy.append(title,element('p','detail-price',money(item.info.price)),element('p','detail-note',`可用库存 ${item.availableStock} 件 · 虚构商品与规格，图片为品类展示图。`));
     layout.append(image,copy); content.append(layout);
     const specs=element('dl','specs');
     for (const group of item.baseAttrs || []) {
@@ -170,12 +182,16 @@ async function load() {
   $('#retry').hidden=true; status('正在读取商品与购物车…'); setBusy(true);
   try {
     const cart=await request('/demo/api/cart'); state.cart=cart.cart; renderCart();
-    const catalog=await request('/demo/api/catalog'); state.products=catalog.products; renderProducts();
+    await loadCatalog();
     status('商品与购物车已加载');
   } catch(error) {status(error.message,true); $('#retry').hidden=false;}
   finally {setBusy(false);}
 }
 $('#retry').addEventListener('click',load);
+async function loadCatalog(){const catalog=await request('/demo/api/catalog');state.products=catalog.products;renderProducts();}
+document.querySelectorAll('[data-category]').forEach(button=>button.addEventListener('click',()=>{catalogCategory=button.dataset.category;document.querySelectorAll('[data-category]').forEach(tab=>tab.setAttribute('aria-pressed',String(tab===button)));renderProducts();}));
+$('#catalog-search').addEventListener('input',renderProducts);
+$('#catalog-sort').addEventListener('change',renderProducts);
 load();
 
 function orderStatus(message,error=false) {
@@ -233,7 +249,7 @@ $('#submit-order').addEventListener('click',async()=>{
   try {
     const order=await request('/demo/api/orders','POST',{token:orderQuote.token});
     orderQuote=null; $('#checkout-dialog').close(); status('演示订单已创建，无需付款');
-    await loadOrders(); orderStatus('演示订单已创建，示例库存已预留。可以取消体验库存释放。');
+    await loadOrders(); await loadCatalog(); orderStatus('演示订单已创建，示例库存已预留。可以取消体验库存释放。');
     $('#orders').scrollIntoView({behavior:'smooth',block:'start'});
   } catch(error) {
     orderQuote=null; $('#checkout-status').textContent=error.message; $('#checkout-status').classList.add('status-error');
@@ -243,7 +259,7 @@ $('#submit-order').addEventListener('click',async()=>{
 $('#order-list').addEventListener('click',async event=>{
   const button=event.target.closest('button[data-action="cancel"]'); if (!button || state.busy) return;
   const sn=button.closest('[data-order]').dataset.order; setBusy(true);
-  try { await request(`/demo/api/orders/${encodeURIComponent(sn)}/cancel`,'POST',{}); await loadOrders(); orderStatus('演示订单已关闭，示例库存已释放'); }
+  try { await request(`/demo/api/orders/${encodeURIComponent(sn)}/cancel`,'POST',{}); await loadOrders(); await loadCatalog(); orderStatus('演示订单已关闭，示例库存已释放'); }
   catch(error) {orderStatus(error.message,true);}
   finally {setBusy(false);}
 });

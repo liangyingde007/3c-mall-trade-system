@@ -1,0 +1,286 @@
+[
+  {
+    "id": "p02",
+    "name": "均衡手机 B",
+    "category": "phone",
+    "price": 2999,
+    "feature": "日常拍照、性能与价格更均衡",
+    "ratings": {
+      "camera": 4,
+      "performance": 4,
+      "battery": 4,
+      "portable": 4,
+      "value": 5,
+      "gaming": 4
+    },
+    "specs": {
+      "内存与存储": "8GB + 256GB",
+      "屏幕": "6.6 英寸 OLED · 120Hz",
+      "影像": "5000 万像素主摄",
+      "电池与充电": "5200mAh · 45W"
+    },
+    "stock": 36,
+    "image": "/demo-assets/phone.png",
+    "skuId": 921001
+  },
+  {
+    "id": "l02",
+    "name": "开发笔记本 B",
+    "category": "laptop",
+    "price": 5999,
+    "feature": "适合开发工具、多任务与日常办公",
+    "ratings": {
+      "performance": 5,
+      "battery": 4,
+      "portable": 3,
+      "value": 4,
+      "office": 5,
+      "gaming": 3
+    },
+    "specs": {
+      "内存与存储": "32GB + 1TB SSD",
+      "屏幕": "14 英寸 · 2.8K",
+      "定位": "代码开发 / 多任务",
+      "重量": "约 1.5kg"
+    },
+    "stock": 12,
+    "image": "/demo-assets/laptop.png",
+    "skuId": 921002
+  },
+  {
+    "id": "h01",
+    "name": "通勤降噪耳机 A",
+    "category": "headphones",
+    "price": 699,
+    "feature": "以通勤降噪、便携与续航为重点",
+    "ratings": {
+      "audio": 4,
+      "noise": 5,
+      "battery": 4,
+      "portable": 5,
+      "value": 4
+    },
+    "specs": {
+      "佩戴方式": "头戴式 / 无线",
+      "降噪": "主动降噪 + 通透模式",
+      "续航": "约 35 小时",
+      "连接": "蓝牙 / USB-C 充电"
+    },
+    "stock": 40,
+    "image": "/demo-assets/headphones.png",
+    "skuId": 921003
+  },
+  {
+    "id": "p01",
+    "name": "影像旗舰 A",
+    "category": "phone",
+    "price": 3999,
+    "feature": "适合重视拍照与日常流畅度的使用者",
+    "ratings": {
+      "camera": 5,
+      "performance": 4,
+      "battery": 4,
+      "portable": 3,
+      "value": 3,
+      "gaming": 4
+    },
+    "specs": {
+      "内存与存储": "12GB + 256GB",
+      "屏幕": "6.7 英寸 OLED · 120Hz",
+      "影像": "5000 万像素主摄",
+      "电池与充电": "5000mAh · 67W"
+    },
+    "stock": 18,
+    "image": "/demo-assets/phone.png",
+    "skuId": 921004
+  },
+  {
+    "id": "p03",
+    "name": "长续航手机 C",
+    "category": "phone",
+    "price": 1999,
+    "feature": "适合通勤、长时间外出与基础应用",
+    "ratings": {
+      "camera": 3,
+      "performance": 3,
+      "battery": 5,
+      "portable": 3,
+      "value": 5,
+      "gaming": 3
+    },
+    "specs": {
+      "内存与存储": "8GB + 128GB",
+      "屏幕": "6.7 英寸 LCD · 90Hz",
+      "影像": "4800 万像素主摄",
+      "电池与充电": "6000mAh · 33W"
+    },
+    "stock": 52,
+    "image": "/demo-assets/phone.png",
+    "skuId": 921005
+  },
+  {
+    "id": "p04",
+    "name": "入门手机 D",
+    "category": "phone",
+    "price": 1299,
+    "feature": "预算优先，满足基础通信与日常应用",
+    "ratings": {
+      "camera": 2,
+      "performance": 2,
+      "battery": 4,
+      "portable": 4,
+      "value": 5,
+      "gaming": 2
+    },
+    "specs": {
+      "内存与存储": "6GB + 128GB",
+      "屏幕": "6.5 英寸 LCD · 90Hz",
+      "影像": "基础双摄",
+      "电池与充电": "5000mAh · 18W"
+    },
+    "stock": 24,
+    "image": "/demo-assets/phone.png",
+    "skuId": 921006
+  },
+  {
+    "id": "l01",
+    "name": "轻薄办公本 A",
+    "category": "laptop",
+    "price": 4499,
+    "feature": "以移动办公、文档处理与便携为重点",
+    "ratings": {
+      "performance": 3,
+      "battery": 5,
+      "portable": 5,
+      "value": 4,
+      "office": 5,
+      "gaming": 1
+    },
+    "specs": {
+      "内存与存储": "16GB + 512GB SSD",
+      "屏幕": "14 英寸 · 2.2K",
+      "定位": "移动办公 / 文档处理",
+      "重量": "约 1.3kg"
+    },
+    "stock": 16,
+    "image": "/demo-assets/laptop.png",
+    "skuId": 921007
+  },
+  {
+    "id": "l03",
+    "name": "游戏笔记本 C",
+    "category": "laptop",
+    "price": 7499,
+    "feature": "适合优先考虑游戏与性能的使用者",
+    "ratings": {
+      "performance": 5,
+      "battery": 2,
+      "portable": 2,
+      "value": 3,
+      "office": 4,
+      "gaming": 5
+    },
+    "specs": {
+      "内存与存储": "32GB + 1TB SSD",
+      "屏幕": "16 英寸 · 165Hz",
+      "定位": "游戏 / 图形处理",
+      "重量": "约 2.2kg"
+    },
+    "stock": 2,
+    "image": "/demo-assets/laptop.png",
+    "skuId": 921008
+  },
+  {
+    "id": "l04",
+    "name": "基础笔记本 D",
+    "category": "laptop",
+    "price": 3299,
+    "feature": "适合文档、网课与预算有限的基础办公",
+    "ratings": {
+      "performance": 2,
+      "battery": 3,
+      "portable": 4,
+      "value": 5,
+      "office": 4,
+      "gaming": 1
+    },
+    "specs": {
+      "内存与存储": "8GB + 256GB SSD",
+      "屏幕": "15.6 英寸 · 1080p",
+      "定位": "网课 / 基础办公",
+      "重量": "约 1.7kg"
+    },
+    "stock": 28,
+    "image": "/demo-assets/laptop.png",
+    "skuId": 921009
+  },
+  {
+    "id": "h02",
+    "name": "音乐头戴耳机 B",
+    "category": "headphones",
+    "price": 1299,
+    "feature": "适合更重视音质和长时间聆听的使用者",
+    "ratings": {
+      "audio": 5,
+      "noise": 4,
+      "battery": 5,
+      "portable": 2,
+      "value": 3
+    },
+    "specs": {
+      "佩戴方式": "头戴式 / 无线",
+      "降噪": "主动降噪",
+      "续航": "约 50 小时",
+      "连接": "蓝牙 / USB-C 充电"
+    },
+    "stock": 8,
+    "image": "/demo-assets/headphones.png",
+    "skuId": 921010
+  },
+  {
+    "id": "h03",
+    "name": "轻巧无线耳机 C",
+    "category": "headphones",
+    "price": 299,
+    "feature": "轻量头戴设计，满足日常听歌与通话",
+    "ratings": {
+      "audio": 3,
+      "noise": 2,
+      "battery": 4,
+      "portable": 5,
+      "value": 5
+    },
+    "specs": {
+      "佩戴方式": "轻量头戴式 / 无线",
+      "降噪": "被动隔音",
+      "续航": "约 24 小时",
+      "连接": "蓝牙 / USB-C 充电"
+    },
+    "stock": 64,
+    "image": "/demo-assets/headphones.png",
+    "skuId": 921011
+  },
+  {
+    "id": "h04",
+    "name": "基础头戴耳机 D",
+    "category": "headphones",
+    "price": 99,
+    "feature": "用于体验低预算与暂时缺货场景的基础无线耳机",
+    "ratings": {
+      "audio": 2,
+      "noise": 1,
+      "battery": 2,
+      "portable": 4,
+      "value": 5
+    },
+    "specs": {
+      "佩戴方式": "头戴式 / 无线",
+      "降噪": "被动隔音",
+      "续航": "约 12 小时",
+      "连接": "蓝牙 / USB-C 充电"
+    },
+    "stock": 0,
+    "image": "/demo-assets/headphones.png",
+    "skuId": 921012
+  }
+]

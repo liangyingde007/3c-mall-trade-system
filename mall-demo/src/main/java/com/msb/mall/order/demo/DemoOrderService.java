@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 @ConditionalOnProperty(name="mall.demo.enabled",havingValue="true")
 @Service
 public class DemoOrderService {
-    private static final List<Long> SKUS = Arrays.asList(921001L, 921002L, 921003L);
+    private static final List<Long> SKUS = Arrays.asList(921001L,921002L,921003L,921004L,921005L,921006L,921007L,921008L,921009L,921010L,921011L,921012L);
     private static final long WARE = 930001L;
     private static final String MARK = "LYD_DEMO_D4B";
     private final OrderDao orders;
@@ -41,7 +41,7 @@ public class DemoOrderService {
     // Atomically validate the cart snapshot, then reuse the original compare-and-delete Token expression.
     private static final String CONSUME =
         "if redis.call('get',KEYS[1])~=ARGV[1] then return 0 end; " +
-        "for i=2,4 do if (redis.call('hget',KEYS[2],ARGV[i]) or '')~=ARGV[i+3] then return -1 end end; " +
+        "for i=2,#ARGV,2 do if (redis.call('hget',KEYS[2],ARGV[i]) or '')~=ARGV[i+1] then return -1 end end; " +
         "if redis.call('get',KEYS[1])==ARGV[1] then return redis.call('del',KEYS[1]) else return 0 end";
 
     public DemoOrderService(OrderDao orders, OrderItemDao items, DemoInventoryDao inventory, StringRedisTemplate redis) {
@@ -67,9 +67,11 @@ public class DemoOrderService {
         if (!JSON.toJSONString(current.items).equals(JSON.toJSONString(quote.items))) {
             throw fail(HttpStatus.CONFLICT,"商品价格或购物车已变化，请重新确认订单");
         }
-        Object[] arguments={token,"921001","921002","921003",quote.cartSnapshot.get("921001"),quote.cartSnapshot.get("921002"),quote.cartSnapshot.get("921003")};
+        List<Object> arguments=new ArrayList<>();
+        arguments.add(token);
+        for (Long sku:SKUS) { arguments.add(sku.toString()); arguments.add(quote.cartSnapshot.get(sku.toString())); }
         Long consumed=redis.execute(new DefaultRedisScript<Long>(CONSUME,Long.class),
-                Arrays.asList(tokenKey(member.getId()),CartConstant.CART_PERFIX+member.getId()),arguments);
+                Arrays.asList(tokenKey(member.getId()),CartConstant.CART_PERFIX+member.getId()),arguments.toArray());
         if (consumed==null || consumed==0) { throw fail(HttpStatus.CONFLICT,"订单已提交或确认已过期，请重新确认"); }
         if (consumed<0) { throw fail(HttpStatus.CONFLICT,"购物车已变化，请重新确认订单"); }
 
@@ -137,7 +139,9 @@ public class DemoOrderService {
 
     private Quote snapshot(Long memberId) {
         Quote quote=new Quote();
-        List<Object> raw=redis.opsForHash().multiGet(CartConstant.CART_PERFIX+memberId,new ArrayList<Object>(Arrays.asList("921001","921002","921003")));
+        List<Object> fields=new ArrayList<>();
+        for (Long sku:SKUS) { fields.add(sku.toString()); }
+        List<Object> raw=redis.opsForHash().multiGet(CartConstant.CART_PERFIX+memberId,fields);
         for (int index=0;index<SKUS.size();index++) {
             Long sku=SKUS.get(index); String value=raw.get(index)==null?"":raw.get(index).toString();
             quote.cartSnapshot.put(sku.toString(),value);

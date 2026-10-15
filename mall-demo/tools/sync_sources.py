@@ -24,8 +24,8 @@ FILES.extend([
     ('mall-order/src/main/resources/mapper/order/OrderDao.xml', 'src/main/resources/mapper/order/OrderDao.xml'),
     ('mall-order/src/main/resources/mapper/order/OrderItemDao.xml', 'src/main/resources/mapper/order/OrderItemDao.xml'),
 ])
-for name in ['demo/index.html', 'demo/styles.css', 'demo/app.js', 'demo/favicon.svg', *[f'demo-assets/product-0{i}.svg' for i in (1,2,3)]]:
-    FILES.append(('mall-cart/src/main/resources/static/' + name, 'src/main/resources/static/' + name))
+# The hosted storefront now owns its catalog UI and generated product assets.
+# Keep only shared Java/mapper implementations in the original-code manifest.
 
 def main():
     parser=argparse.ArgumentParser()

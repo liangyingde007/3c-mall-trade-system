@@ -15,7 +15,7 @@ import java.util.*;
 /** Local adapter of the original cart's product contract; no internal HTTP hop. */
 @Component
 public class LocalProductBridge implements ProductFeignService {
-    private static final List<Long> SKUS=Arrays.asList(921001L,921002L,921003L);
+    private static final List<Long> SKUS=Arrays.asList(921001L,921002L,921003L,921004L,921005L,921006L,921007L,921008L,921009L,921010L,921011L,921012L);
     private final SkuInfoDao products;
     private final DemoCatalogDao details;
     public LocalProductBridge(SkuInfoDao products,DemoCatalogDao details) { this.products=products; this.details=details; }
@@ -26,7 +26,13 @@ public class LocalProductBridge implements ProductFeignService {
         return product;
     }
     @Override public R demoProducts() {
-        return R.ok().put("dataMode","sample").put("products",products.selectList(new QueryWrapper<SkuInfoEntity>().in("sku_id",SKUS).orderByAsc("sku_id")));
+        List<Map<String,Object>> catalog=new ArrayList<>();
+        for (SkuInfoEntity product:products.selectList(new QueryWrapper<SkuInfoEntity>().in("sku_id",SKUS).orderByAsc("sku_id"))) {
+            Map<String,Object> item=new LinkedHashMap<>(JSON.parseObject(JSON.toJSONString(product)));
+            item.put("stock",details.availableStock(product.getSkuId()));
+            catalog.add(item);
+        }
+        return R.ok().put("dataMode","sample").put("products",catalog);
     }
     @Override public R info(Long id) { return R.ok().put("skuInfoJSON",JSON.toJSONString(product(id))); }
     @Override public List<String> getSkuSaleAttrs(Long id) { product(id); return products.getSkuSaleAttrs(id); }
@@ -41,7 +47,7 @@ public class LocalProductBridge implements ProductFeignService {
         }
         List<Map<String,Object>> groups=new ArrayList<>();
         grouped.forEach((name,attrs)-> { Map<String,Object> group=new LinkedHashMap<>(); group.put("groupName",name); group.put("baseAttrs",attrs); groups.add(group); });
-        item.put("baseAttrs",groups); item.put("seckillVO",null);
+        item.put("baseAttrs",groups); item.put("seckillVO",null); item.put("availableStock",details.availableStock(id));
         return R.ok().put("dataMode","sample").put("item",item);
     }
 }

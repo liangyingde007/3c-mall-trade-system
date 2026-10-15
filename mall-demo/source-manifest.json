@@ -77,8 +77,8 @@
     {
       "source": "mall-cart/src/main/java/com/msb/mall/controller/DemoCartController.java",
       "destination": "src/main/java/com/msb/mall/controller/DemoCartController.java",
-      "sourceSha256": "2b8e1cf4b46e9467f1ba69563e4224db9eff3f3ec138c165bbb027022a810f2b",
-      "sha256": "2b8e1cf4b46e9467f1ba69563e4224db9eff3f3ec138c165bbb027022a810f2b"
+      "sourceSha256": "1232009c5eb23ca6a745a2b227e20f79b360f850834a4de9a2428465b46e7031",
+      "sha256": "1232009c5eb23ca6a745a2b227e20f79b360f850834a4de9a2428465b46e7031"
     },
     {
       "source": "mall-cart/src/main/java/com/msb/mall/controller/DemoWebController.java",
@@ -131,8 +131,8 @@
     {
       "source": "mall-order/src/main/java/com/msb/mall/order/demo/DemoOrderService.java",
       "destination": "src/main/java/com/msb/mall/order/demo/DemoOrderService.java",
-      "sourceSha256": "bd6f91d3179a390ccf1d89d10093598bc2878c58fb5bbada833bb63bd0351737",
-      "sha256": "bd6f91d3179a390ccf1d89d10093598bc2878c58fb5bbada833bb63bd0351737"
+      "sourceSha256": "f3791448ccf2e6bd865134f98db2560724f5264f3b9249ad9007a8ad4d8496d3",
+      "sha256": "f3791448ccf2e6bd865134f98db2560724f5264f3b9249ad9007a8ad4d8496d3"
     },
     {
       "source": "mall-order/src/main/java/com/msb/mall/order/demo/DemoOrderExpiry.java",
@@ -163,48 +163,6 @@
       "destination": "src/main/resources/mapper/order/OrderItemDao.xml",
       "sourceSha256": "e16e16619ae50bf3d3ad2d3e2258520f36a80e9ea2bf406d07f407a1d5488de1",
       "sha256": "e7ef18c8bc0b663f7544fb78da698d5e07846a7a771f92832e267d22c01d4dc1"
-    },
-    {
-      "source": "mall-cart/src/main/resources/static/demo/index.html",
-      "destination": "src/main/resources/static/demo/index.html",
-      "sourceSha256": "c8dc514d4add95a3768b6eb8979ba6ab04c36144403f3563ccca514639f13dc2",
-      "sha256": "75c0cf5cb0b9f998ea7cc7d62cc84a7d2c79f57a33d81a1e40908d4479b70a26"
-    },
-    {
-      "source": "mall-cart/src/main/resources/static/demo/styles.css",
-      "destination": "src/main/resources/static/demo/styles.css",
-      "sourceSha256": "53a96a24085f86820f4b60e0e978d04aa978089d328e9408e47d86ffaf07893b",
-      "sha256": "53a96a24085f86820f4b60e0e978d04aa978089d328e9408e47d86ffaf07893b"
-    },
-    {
-      "source": "mall-cart/src/main/resources/static/demo/app.js",
-      "destination": "src/main/resources/static/demo/app.js",
-      "sourceSha256": "83477886de28c25208df4ed4815c589844377944e91e06800df024915d7ce83a",
-      "sha256": "83477886de28c25208df4ed4815c589844377944e91e06800df024915d7ce83a"
-    },
-    {
-      "source": "mall-cart/src/main/resources/static/demo/favicon.svg",
-      "destination": "src/main/resources/static/demo/favicon.svg",
-      "sourceSha256": "3b585682eaf5f43570a3b09be7fdbcb7ed4127bb845a4c5173e1423f8881714b",
-      "sha256": "3b585682eaf5f43570a3b09be7fdbcb7ed4127bb845a4c5173e1423f8881714b"
-    },
-    {
-      "source": "mall-cart/src/main/resources/static/demo-assets/product-01.svg",
-      "destination": "src/main/resources/static/demo-assets/product-01.svg",
-      "sourceSha256": "a77bd721487cf527e4be983307e70d7425067b3c4489c07ccfd16833c73021ca",
-      "sha256": "c13233c142011f3cd05cd80c23f7c120bb41446f03ba340e2dd1dd5ede8df77a"
-    },
-    {
-      "source": "mall-cart/src/main/resources/static/demo-assets/product-02.svg",
-      "destination": "src/main/resources/static/demo-assets/product-02.svg",
-      "sourceSha256": "c0322c0d24671986283358d1def69981a52be65e2c9da95654349b349ab816a5",
-      "sha256": "9d5749e8d0a30ba4b07448388850fba56ffd9188dadc2a4328382bb1aa0c9434"
-    },
-    {
-      "source": "mall-cart/src/main/resources/static/demo-assets/product-03.svg",
-      "destination": "src/main/resources/static/demo-assets/product-03.svg",
-      "sourceSha256": "24420ad018e234a36fd8ddac249575b6850c77afd2c0f7cb4c676ba5590bbabd",
-      "sha256": "a569b6a1a7fdd2cd3ea33d580d699ed0e1ca5ce49e730009d3f11b231d82d14c"
     }
   ]
 }

@@ -17,7 +17,7 @@ import java.util.*;
 @RequestMapping("/demo/api")
 @ConditionalOnProperty(name = "mall.demo.enabled", havingValue = "true")
 public class DemoCartController {
-    private static final Set<Long> DEMO_SKUS = new HashSet<>(Arrays.asList(921001L,921002L,921003L));
+    private static final Set<Long> DEMO_SKUS = new HashSet<>(Arrays.asList(921001L,921002L,921003L,921004L,921005L,921006L,921007L,921008L,921009L,921010L,921011L,921012L));
     private final ICartService carts;
     private final ProductFeignService products;
 
